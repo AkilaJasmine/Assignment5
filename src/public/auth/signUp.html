@@ -1,0 +1,40 @@
+<div class="container">
+    <form name="signUpForm" novalidate>
+        <div class="form-group">
+            First Name : <input type="text" class="form-control" name="fname" ng-model="user.fName" required>
+            <span ng-if="signUpForm.fname.$error.required && signUpForm.fname.$touched">
+                First Name Should not be empty !!!
+            </span>
+        </div>
+        <div class="form-group">
+            Last Name : <input type="text" class="form-control" name="lname" ng-model="user.lName" required>
+            <span ng-if="signUpForm.lname.$error.required && signUpForm.lname.$touched">
+                Last Name Should not be empty !!!
+            </span>
+        </div>
+        <div class="form-group">
+            Email Address : <input type="email" class="form-control" name="email" ng-model="user.email" required>
+            <span ng-if="signUpForm.lname.$touched && signUpForm.email.$invalid">
+                Email Address should be in a Valid Format !! (E.g: someOne@example.com)
+            </span>
+        </div>
+        <div class="form-group">
+            Phone Number : <input type="text" class="form-control" name="phNo" ng-model="user.number" required pattern="(\d{3})-(\d{3})-(\d{4})">
+            <span ng-if="signUpForm.phNo.$touched && signUpForm.phNo.$invalid">
+                Phone No should be in this format -> ###-###-####
+            </span>
+        </div>
+        <div class="form-group">
+            Favourite Dish : <input type="text" class="form-control" name="fdish" ng-model="user.favDish" required ng-blur="signUpCtrl.isValidFavDish(user.favDish)">
+            <span ng-if="signUpForm.fdish.$error.required && signUpForm.fdish.$touched">
+                Please enter your Favourite Item!!!
+            </span>
+            <span ng-if="!signUpCtrl.favDishValid">
+                Please enter valid item!!!
+            </span>
+        </div>
+        <button type="submit" class="btn btn-default" ng-disabled="signUpForm.$invalid" ng-click="signUpCtrl.submit(user)">
+            Submit
+        </button>
+    </form>
+</div>
