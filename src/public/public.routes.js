@@ -45,6 +45,16 @@ function routeConfig ($stateProvider) {
       url: '/signUp',
       templateUrl: 'src/public/auth/signUp.html',
       controller: "signUpController as signUpCtrl"
+    })
+    .state('public.viewInfo',{
+      url: '/viewInfo',
+      templateUrl: 'src/public/auth/view.html',
+      controller: 'viewController as viewCtrl',
+      resolve : {
+        userInfo: ['viewService',function(viewService){
+          return viewService.getUserInfo();
+        }]
+      }
     });
 }
 })();

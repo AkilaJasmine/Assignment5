@@ -4,23 +4,32 @@
     angular.module('public')
     .controller('signUpController', signUpController);
 
-    signUpController.$inject = ['infoService'];
+    signUpController.$inject = ['viewService'];
 
-    function signUpController(infoService){
+    function signUpController(viewService){
         var signUpCtrl = this;
 
         signUpCtrl.isValidFavDish = function(favDish){
-            signUpCtrl.favDishValid = infoService.isValidFavDish(favDish.toUpperCase());
+            signUpCtrl.inValidMsg = "";
+            if(favDish === undefined){
+                signUpCtrl.errorMsg = "Field Should not be empty!!!";
+            }else{
+               var promise = viewService.isValidItem(favDish.toUpperCase());
+
+               promise.then(function(response){
+                   if(response.menu_items === undefined || response.menu_items.length === 0){
+                       signUpCtrl.isValid = false;
+                       signUpCtrl.inValidMsg = "No such menu number exists!!";
+                   }else{
+                       signUpCtrl.isValid = true;
+                   }
+               });
+            }
         }
 
-        signUpController.submit = function(user){
-           
-            if(signUpCtrl.isValidFavDish){
-                infoService.formSubmit(user);
-                signUpCtrl.valid = true;
-            }
-            
-            
+        signUpCtrl.submit = function(user){
+            viewService.saveUser(user);
+            signUpCtrl.completed = true;
         }
     };
 
