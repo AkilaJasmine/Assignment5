@@ -1,11 +1,12 @@
 <div class="container">
-    <form name="signUpForm" ng-submit="signUpCtrl.submit(user)" novalidate>
-        <div class="form-group">
-            First Name : <input type="text" class="form-control" name="fname" ng-model="user.firstName" required>
-            <span ng-if="signUpForm.fname.$error.required && signUpForm.fname.$touched">
-                First Name Should not be empty !!!
-            </span>
-        </div>
+    <div ng-show="!signUpCtrl.completed">
+        <form name="signUpForm" ng-submit="signUpCtrl.submit(user)" novalidate>
+            <div class="form-group">
+                First Name : <input type="text" class="form-control" name="fname" ng-model="user.firstName" required>
+                <span ng-if="signUpForm.fname.$error.required && signUpForm.fname.$touched">
+                    First Name Should not be empty !!!
+                </span>
+            </div>
         <div class="form-group">
             Last Name : <input type="text" class="form-control" name="lname" ng-model="user.lastName" required>
             <span ng-if="signUpForm.lname.$error.required && signUpForm.lname.$touched">
@@ -37,6 +38,7 @@
             Submit
         </button>
     </form>
+    </div>
     <div ng-show="signUpCtrl.completed">
         <h3>Your information has been saved.</h3>
     </div>

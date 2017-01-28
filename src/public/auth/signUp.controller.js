@@ -16,18 +16,20 @@
             }else{
                var promise = viewService.isValidItem(favDish.toUpperCase());
 
-               promise.then(function(response){
-                   if(response.menu_items === undefined || response.menu_items.length === 0){
-                       signUpCtrl.isValid = false;
-                       signUpCtrl.inValidMsg = "No such menu number exists!!";
-                   }else{
+               promise.then(
+                   function(response){
+                       signUpCtrl.menu_item = response;
                        signUpCtrl.isValid = true;
-                   }
+               },
+               function(data){
+                   signUpCtrl.isValid = false;
+                    signUpCtrl.inValidMsg = "No such menu number exists!!";
                });
             }
         }
 
         signUpCtrl.submit = function(user){
+            user.favItem = signUpCtrl.menu_item;
             viewService.saveUser(user);
             signUpCtrl.completed = true;
         }
