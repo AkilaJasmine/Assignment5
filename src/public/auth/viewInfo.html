@@ -1,0 +1,13 @@
+<div>
+    <p>First Name : {{$ctrl.info.firstName}}</p>
+    <p>Last Name : {{$ctrl.info.lastName}}</p>
+    <p>Email Address : {{$ctrl.info.email}}</p>
+    <p>Phone Number : {{$ctrl.info.number}}</p>
+    <p>Favourite item : {{$ctrl.info.favDish}}</p>
+    <img class="img-responsive" width="250" height="150" ng-src="{{$ctrl.path}}/images/{{$ctrl.info.favItem.short_name}}.jpg" alt="{{$ctrl.info.favItem.name}}">
+        <div class="menu-item-description col-sm-7">
+            <h3 class="menu-item-title">{{$ctrl.info.favItem.name}}</h3>
+            <p class="menu-item-details">{{$ctrl.info.favItem.description}}</p>
+        </div>
+    
+</div>

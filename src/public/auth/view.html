@@ -1,0 +1,10 @@
+<div class="container">
+    <div ng-if="viewCtrl.isRegistered">
+        <view-component 
+            info="viewCtrl.info"
+            path="viewCtrl.basePath"></view-component>
+    </div>
+    <div ng-if="!viewCtrl.isRegistered">
+        <h3>Not Signed Up Yet. <a ui-sref="public.signUp"> Sign up Now!</a></h3>
+    </div>
+</div>
